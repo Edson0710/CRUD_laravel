@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-
+@include('layouts.alerts')
 <div class="col-12 mb-5" id="contenedor">
     <form method="POST" action="{{route('mascotas.update', $mascota)}}">
         @method('PUT')

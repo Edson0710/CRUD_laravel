@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Mascota;
+use Illuminate\Support\Facades\Validator;
 
 class MascotasController extends Controller
 {
@@ -39,6 +40,30 @@ class MascotasController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string|max:255',
+            'raza' => 'required|string|max:255',
+            'especie' => 'required|string|max:255',
+            'sexo' => 'required|string|max:255',
+            'edad' => 'required|integer|max:255',
+        ], [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El campo :attribute debe ser un texto.',
+            'integer' => 'El campo :attribute debe ser un número.',
+            'max' => 'El campo :attribute debe tener un máximo de :max caracteres.',
+        ], [
+            'nombre' => 'Nombre',
+            'raza' => 'Raza',
+            'especie' => 'Especie',
+            'sexo' => 'Sexo',
+            'edad' => 'Edad',
+        ]);
+        if($validator->fails()){
+            return redirect()->route('mascotas.create')->withErrors($validator)->withInput();
+        }
+
+
         $mascota = new Mascota();
         $mascota->nombre = $request->nombre;
         $mascota->especie = $request->especie;
@@ -88,6 +113,29 @@ class MascotasController extends Controller
      */
     public function update(Request $request, Mascota $mascota)
     {
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string|max:255',
+            'raza' => 'required|string|max:255',
+            'especie' => 'required|string|max:255',
+            'sexo' => 'required|string|max:255',
+            'edad' => 'required|integer|max:255',
+        ], [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El campo :attribute debe ser un texto.',
+            'integer' => 'El campo :attribute debe ser un número.',
+            'max' => 'El campo :attribute debe tener un máximo de :max caracteres.',
+        ], [
+            'nombre' => 'Nombre',
+            'raza' => 'Raza',
+            'especie' => 'Especie',
+            'sexo' => 'Sexo',
+            'edad' => 'Edad',
+        ]);
+
+        if($validator->fails()){
+            return redirect()->route('mascotas.edit', ['mascota' => $mascota])->withErrors($validator)->withInput();
+        }
+
         $mascota->nombre = $request->nombre;
         $mascota->especie = $request->especie;
         $mascota->edad = $request->edad;

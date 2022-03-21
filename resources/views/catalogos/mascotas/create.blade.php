@@ -6,25 +6,25 @@
 @stop
 
 @section('content')
-
+@include('layouts.alerts')
 <div class="col-12 mb-5" id="contenedor">
     <form method="POST" action="{{route('mascotas.store')}}">
         @csrf
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{old('nombre')}}">
         </div>
         <div class="form-group">
             <label for="especie">Especie</label>
-            <input type="text" class="form-control" id="especie" name="especie" placeholder="Especie">
+            <input type="text" class="form-control" id="especie" name="especie" placeholder="Especie" value="{{old('especie')}}">
         </div>
         <div class="form-group">
             <label for="edad">Edad</label>
-            <input type="text" class="form-control" id="edad" name="edad" placeholder="Edad">
+            <input type="text" class="form-control" id="edad" name="edad" placeholder="Edad" value="{{old('edad')}}">
         </div>
         <div class="form-group ">
             <label for="raza">Raza</label>
-            <input type="text" class="form-control" id="raza" name="raza" placeholder="Raza">
+            <input type="text" class="form-control" id="raza" name="raza" placeholder="Raza" value="{{old('raza')}}">
         </div>
         <div class="form-group">
             <label for="sexo">Sexo</label><br>
