@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Mascota;
 
-class HomeController extends Controller
+class MascotasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        $mascotas = Mascota::all();
+        return view('catalogos.mascotas.index', [
+            'mascotas' => $mascotas
+        ]);
     }
 
     /**
