@@ -97,8 +97,9 @@ class MascotasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Mascota $mascota)
     {
-        //
+        $mascota->delete();
+        return redirect()->route('mascotas.index');
     }
 }
