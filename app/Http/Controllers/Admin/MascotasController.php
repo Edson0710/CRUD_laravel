@@ -45,8 +45,14 @@ class MascotasController extends Controller
         $mascota->edad = $request->edad;
         $mascota->raza = $request->raza;
         $mascota->sexo = $request->sexo;
-        $mascota->save();
-        return redirect()->route('mascotas.index');
+        try{
+            $mascota->save();
+            return redirect()->route('mascotas.index')->with('success', 'Mascota creada correctamente');
+        }
+        catch(\Exception $e){
+            return redirect()->route('mascotas.index')->withErrors('Error al crear la mascota');
+        }
+        
     }
 
     /**
@@ -87,8 +93,13 @@ class MascotasController extends Controller
         $mascota->edad = $request->edad;
         $mascota->raza = $request->raza;
         $mascota->sexo = $request->sexo;
-        $mascota->save();
-        return redirect()->route('mascotas.index');
+        try{
+            $mascota->save();
+            return redirect()->route('mascotas.index')->with('success', 'Mascota actualizada correctamente');
+        }
+        catch(\Exception $e){
+            return redirect()->route('mascotas.index')->withErrors('Error al actualizar la mascota');
+        }
     }
 
     /**
@@ -99,7 +110,12 @@ class MascotasController extends Controller
      */
     public function destroy(Mascota $mascota)
     {
-        $mascota->delete();
-        return redirect()->route('mascotas.index');
+        try{
+            $mascota->delete();
+            return redirect()->route('mascotas.index')->with('success', 'Mascota eliminada correctamente');
+        }
+        catch(\Exception $e){
+            return redirect()->route('mascotas.index')->withErrors('Error al eliminar la mascota');
+        }
     }
 }

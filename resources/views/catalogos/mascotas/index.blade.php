@@ -8,6 +8,7 @@
 @section('content')
 
 <div class="col-12" id="contenedor">
+    @include('layouts.alerts')
     <a class="btn btn-primary" href="{{route('mascotas.create')}}">Crear</a>
     <div class="table-responsive">
         <table id="table" class="table table-striped">
