@@ -66,9 +66,11 @@ class MascotasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Mascota $mascota)
     {
-        //
+        return view('catalogos.mascotas.edit', [
+            'mascota' => $mascota
+        ]);
     }
 
     /**
@@ -78,9 +80,15 @@ class MascotasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Mascota $mascota)
     {
-        //
+        $mascota->nombre = $request->nombre;
+        $mascota->especie = $request->especie;
+        $mascota->edad = $request->edad;
+        $mascota->raza = $request->raza;
+        $mascota->sexo = $request->sexo;
+        $mascota->save();
+        return redirect()->route('mascotas.index');
     }
 
     /**

@@ -30,7 +30,7 @@
                 <td>{{$mascota->edad}}</td>
                 <td>{{$mascota->raza}}</td>
                 <td>{{$mascota->sexo}}</td>
-                <td><a href="{{route('mascotas.edit', $mascota->id)}}" class="btn btn-warning">Editar</a></td>
+                <td><a href="{{route('mascotas.edit', $mascota)}}" class="btn btn-warning">Editar</a></td>
                 <td>
                     <form action="{{route('mascotas.destroy', $mascota->id)}}" method="POST">
                         @csrf
