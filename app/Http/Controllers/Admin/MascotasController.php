@@ -28,7 +28,7 @@ class MascotasController extends Controller
      */
     public function create()
     {
-        //
+        return view('catalogos.mascotas.create');
     }
 
     /**
@@ -39,7 +39,14 @@ class MascotasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mascota = new Mascota();
+        $mascota->nombre = $request->nombre;
+        $mascota->especie = $request->especie;
+        $mascota->edad = $request->edad;
+        $mascota->raza = $request->raza;
+        $mascota->sexo = $request->sexo;
+        $mascota->save();
+        return redirect()->route('mascotas.index');
     }
 
     /**
